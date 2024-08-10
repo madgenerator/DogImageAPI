@@ -1,5 +1,22 @@
 const getDogButton = document.getElementById('get-dog-button');
+const getAPIButton = document.getElementById('getAPI');
+const getAPIData = document.getElementById('apiData');
 const dogImageContainer = document.getElementById('dog-image-container');
+
+getAPIButton.addEventListener('click', async () => {
+  const url = "https://nodejs-test-1st.vercel.app/?name=jbsong&&age=19";
+
+  try {
+    const response = await fetch(url);
+    console.log(response);
+    const data = await response.text();
+    console.log(data);
+    getAPIData.textContent = data;
+  } 
+  catch (error) {
+    console.error('정보 가져오기 중 문제 발생:', error);
+  }
+});
 
 getDogButton.addEventListener('click', async () => {
   const url = 'https://random.dog/woof.json';
@@ -26,3 +43,4 @@ getDogButton.addEventListener('click', async () => {
     console.error('강아지 이미지 가져오기 중 문제 발생:', error);
   }
 });
+
